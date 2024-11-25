@@ -1,9 +1,7 @@
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Layout from "@theme/Layout";
-import HomepageFeatures from "@site/src/components/HomepageFeatures";
-import Heading from "@theme/Heading";
+import ParticlesAnimation from "@site/src/components/ParticlesAnimation";
 import LayoutProvider from "@theme/Layout/Provider";
 import {
   PageMetadata,
@@ -30,6 +28,8 @@ export default function Home(): JSX.Element {
 
       <AnnouncementBar />
 
+      <ParticlesAnimation />
+
       <div
         id={SkipToContentFallbackId}
         className={clsx(ThemeClassNames.wrapper.main, styles.mainWrapper)}
@@ -38,8 +38,12 @@ export default function Home(): JSX.Element {
           <div className={styles.container}>
             {/* Navbar with dark mode toggle and blogs button */}
             <header className={styles.header}>
-              <NavbarColorModeToggle className={styles.colorModeToggle} />
-              <Link to="/blog" className="button button--primary">
+              {/* <NavbarColorModeToggle className={styles.colorModeToggle} /> */}
+              <Link
+                to="/blog"
+                className="button button--link"
+                style={{ color: "#fff" }}
+              >
                 Blogs
               </Link>
             </header>
