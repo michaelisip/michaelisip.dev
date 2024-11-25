@@ -41,8 +41,7 @@ export default function Home(): JSX.Element {
               {/* <NavbarColorModeToggle className={styles.colorModeToggle} /> */}
               <Link
                 to="/blog"
-                className="button button--link"
-                style={{ color: "#fff" }}
+                className={`${styles.blogButton} button button--link`}
               >
                 Blogs
               </Link>

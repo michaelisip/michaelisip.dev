@@ -46,6 +46,10 @@
   z-index: 99999;
 }
 
+.blogButton {
+  color: var(--text--secondary);
+}
+
 .staticText {
   margin: 0;
   font-size: 1.2rem;
