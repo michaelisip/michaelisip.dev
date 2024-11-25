@@ -21,3 +21,61 @@
   align-items: center;
   justify-content: center;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--ifm-background-color);
+  font-family: Arial, sans-serif;
+  padding: 0 20px;
+}
+
+.header {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.main {
+  text-align: center;
+}
+
+.staticText {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--ifm-font-color-base);
+}
+
+.typingAnimation {
+  display: inline-block;
+  color: var(--ifm-font-color-base);
+  border-right: 2px solid var(--ifm-font-color-base);
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3s steps(15, end) infinite,
+    blink-caret 0.5s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 15ch; /* Adjust based on the length of your text */
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--ifm-font-color-base);
+  }
+}
