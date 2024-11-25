@@ -1,11 +1,11 @@
 ---
-slug: first-blog-post
-title: First Blog Post
+slug: hello-world
+title: Hello World! 🎉
 authors: [michaelisip]
-tags: [hello]
+tags: [introduction, career-story, personal-blog]
 ---
 
-## Hello World: My Journey into Software Development
+## My Journey into Software Development
 
 Welcome to my blog! 🎉 I'm excited to share my experiences, challenges, and learnings as a software developer. Whether you're a fellow coder, a tech enthusiast, or someone just curious about the world of software development, I hope you'll find something here to inspire or inform you.
 
