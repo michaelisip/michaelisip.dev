@@ -20,9 +20,11 @@ import styles from "./index.module.css";
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
+  const description = siteConfig.tagline;
+
   return (
     <LayoutProvider>
-      <PageMetadata title={"test"} description={"test"} />
+      <PageMetadata title={"Portfolio"} description={description} />
 
       <SkipToContent />
 
