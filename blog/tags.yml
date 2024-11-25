@@ -1,4 +1,19 @@
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+introduction:
+  label: Introduction
+  permalink: /introduction
+  # description: Introdcution
+
+personal-blog:
+  label: Personal Blog
+  permalink: /personal-blog
+  # description: Personal Blog
+
+career-story:
+  label: Career Story
+  permalink: /career-story
+  # description: Career Story
+
+tech-journey:
+  label: Tech Journey
+  permalink: /tech-journey
+  # description: Tech Journey
