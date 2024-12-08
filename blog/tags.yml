@@ -17,3 +17,13 @@ tech-journey:
   label: Tech Journey
   permalink: /tech-journey
   # description: Tech Journey
+
+laravel:
+  label: Laravel
+  permalink: /laravel-framework
+  # description: Laravel Framework
+
+web-development:
+  label: Web Development
+  permalink: /web-development
+  # description: Web Development
