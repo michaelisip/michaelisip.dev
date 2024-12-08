@@ -22,21 +22,21 @@ So, the Service Pattern organizes your code, and the Service Interface Pattern m
 ## Why Use the Service Interface Pattern?
 
 1. **Abstraction**: Decouples the implementation from the code that uses it.
-
 2. **Swappability**: You can replace the service implementation without modifying the dependent code.
-
 3. **Testability**: Allows easy mocking of services in tests.
-
 4. **Scalability**: Facilitates adding new implementations for the same service logic.
 
 ## Directory Structure
 
 ```markdown
 app/
+├── Http/
+│   └── Controllers/
+│       └── UserController.php
 ├── Services/
 │ ├── UserService.php
 │ └── Contracts/
-│   └── UserServiceInterface.php
+│       └── UserServiceInterface.php
 └── Providers/
     └── AppServiceProvider.php
 ```
@@ -45,7 +45,7 @@ app/
 
 ### 1. Create a Service Interface
 
-Interfaces are usually placed in the App\Contracts or App\Services\Contracts directory.
+Interfaces are usually placed in the `App\Contracts` or `App\Services\Contracts` directory.
 
 - Create the directory for contracts:
 
@@ -68,7 +68,7 @@ interface UserServiceInterface
 
 ### 2. Create a Concrete Implementation of the Interface
 
-The concrete implementation resides in the app/Services directory.
+The concrete implementation resides in the `app/Services` directory.
 
 2. Create the service class
 
@@ -143,4 +143,80 @@ class UserController extends Controller
     }
 }
 
+```
+
+### 5. Testing
+
+(a) Testing the Real Implementation
+
+Use `app()->call()` to dynamically resolve the service and call its methods, passing any required parameters. This approach ensures the service is properly resolved and adheres to its interface.
+
+```php
+namespace Tests\Unit;
+
+use Tests\TestCase;
+use App\Models\User;
+use App\Services\UserService;
+
+class UserServiceTest extends TestCase
+{
+    public function test_register_user()
+    {
+        // Data for the test
+        $data = [
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+            'password' => bcrypt('password'),
+        ];
+
+        // Use app()->call() to dynamically call the registerUser method
+        $user = app()->call([UserServiceInterface::class, 'registerUser'], [
+            'data' => $data
+        ]);
+
+        // Assertions
+        $this->assertInstanceOf(User::class, $user);
+        $this->assertEquals('Jane Doe', $user->name);
+        $this->assertDatabaseHas('users', ['email' => 'jane@example.com']);
+    }
+```
+
+(b) Testing with a Mock Implementation
+
+To ensure test isolation, you can mock the service implementation and still use `app()->call()` to interact with the mocked service.
+
+```php
+namespace Tests\Unit;
+
+use Tests\TestCase;
+use App\Services\Contracts\UserServiceInterface;
+
+class UserServiceTest extends TestCase
+{
+    public function test_register_user_with_mock()
+    {
+        // Create a mock for the interface
+        $mockService = $this->createMock(UserServiceInterface::class);
+
+        // Define mock behavior
+        $mockService->method('registerUser')->willReturn([
+            'id' => 1,
+            'name' => 'Mock User',
+            'email' => 'mock@example.com',
+        ]);
+
+        // Bind the mock to the interface
+        $this->app->instance(UserServiceInterface::class, $mockService);
+
+        // Use app()->call() to call the registerUser method
+        $user = app()->call([UserServiceInterface::class, 'registerUser'], [
+            'data' => ['name' => 'Mock User', 'email' => 'mock@example.com', 'password' => 'password'],
+        ]);
+
+        // Assertions
+        $this->assertIsArray($user);
+        $this->assertEquals('Mock User', $user['name']);
+        $this->assertEquals('mock@example.com', $user['email']);
+    }
+}
 ```
