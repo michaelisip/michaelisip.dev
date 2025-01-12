@@ -32,7 +32,7 @@ php ./configure.php
 - Name your package (e.g., my-awesome-package).
 - Provide a description for your package.
 
-The script will automatically replace placeholders (like :author_name) with your provided details and rename files accordingly.
+The script will automatically replace placeholders (like `:author_name`) with your provided details and rename files accordingly.
 
 ## 3. Local Development
 
@@ -45,7 +45,9 @@ laravel new laravel-package-test
 cd laravel-package-test
 ```
 
-2. Link Your Package: In your Laravel app's root directory, run:
+2. Link Your Package:
+
+In your Laravel app's root directory, run:
 
 ```bash
 composer config repositories.my-awesome-package path ../path-to-my-awesome-package
@@ -53,6 +55,7 @@ composer require your-vendor/my-awesome-package:@dev
 ```
 
 This tells Composer to use the local copy of your package instead of downloading it from Packagist.
+
 ```json
 "repositories": {
    "my-awesome-package": {
@@ -61,15 +64,16 @@ This tells Composer to use the local copy of your package instead of downloading
    }
 }
 ```
+
 3. Require the package using Composer:
+
 ```bash
 composer require vendor-name/my-awesome-package:@dev
 ```
-Replace vendor-name/my-awesome-package with the name defined in your package's composer.json file.
 
-4. Verify Installation: Check that your package's ServiceProvider is loaded by looking in the `config/app.php` file (if auto-discovery is disabled, add the provider manually).
+Replace `vendor-name/my-awesome-package` with the name defined in your package's composer.json file.
 
-## 4. Publish Package Assets
+4. Publish Package Assets
 
 If your package includes configuration files, migrations, or views that need to be published, run:
 
@@ -78,6 +82,10 @@ php artisan vendor:publish --provider="YourVendor\AwesomePackage\AwesomePackageS
 ```
 
 This will publish the package's assets (e.g., config files) into the Laravel application for testing.
+
+5. Verify Installation
+
+Check that your package's ServiceProvider is loaded by looking in the `config/app.php` file (if auto-discovery is disabled, add the provider manually).
 
 ## 5. Test Your Package Locally
 
@@ -103,8 +111,10 @@ Write test routes or controllers in the Laravel app to verify that your package 
 
 ## 6. Publish the Package
 
-1. Push to a GitHub Repository: - Create a repository for your package.
-   -Push your package code to the repository.
+1. Push to a GitHub Repository:
+
+   - Create a repository for your package.
+   - Push your package code to the repository.
 
 2. Submit to Packagist:
    - Go to Packagist and log in.
